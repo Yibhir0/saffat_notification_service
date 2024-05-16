@@ -1,5 +1,7 @@
 const express = require("express");
 
+const bodyParser = require("body-parser");
+
 const { connectDB } = require("./dbConnection");
 
 const { CronJob } = require("cron");
@@ -13,6 +15,14 @@ const { getAllTokens } = require("./api/api");
 const app = express();
 
 app.use(express.json());
+
+// Parsing the body to json
+app.use(bodyParser.json());
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   }),
+// );
 
 // Loading the environment variables from the .env file.
 require("dotenv").config();
