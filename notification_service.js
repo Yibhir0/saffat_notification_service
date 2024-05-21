@@ -1,10 +1,8 @@
 let { Expo } = require("expo-server-sdk");
 
-
 const { getAllTokens } = require("./api/api")
 
 let expo = new Expo();
-
 
 async function getPushTokens() {
     try {
@@ -16,7 +14,6 @@ async function getPushTokens() {
         return { error: err.message };
     }
 }
-
 
 // async function storePushToken(token) {
 //     await db.query('insert into push_tokens (token) values ($1)', [token]);

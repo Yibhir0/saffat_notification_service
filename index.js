@@ -4,17 +4,17 @@ const bodyParser = require("body-parser");
 
 const cors = require('cors');
 
-
 const { connectDB } = require("./dbConnection");
 
 const { CronJob } = require("cron");
-
 
 const TokenRouter = require("./route/token.route");
 
 const { Expo } = require("expo-server-sdk");
 
 const { getAllTokens } = require("./api/api");
+
+const { schedule_notifications } = require("./notification_schedule")
 
 const app = express();
 
@@ -23,7 +23,7 @@ const app = express();
 // Parsing the body to json
 app.use(bodyParser.json());
 
-app.use(cors()); 
+app.use(cors());
 // app.use(
 //   bodyParser.urlencoded({
 //     extended: true,
@@ -36,6 +36,17 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5001;
 
 const expo = new Expo();
+
+new CronJob(
+    "* * * * *",
+
+    async function () {
+        schedule_notifications();
+    },
+    null,
+    true,
+    "America/Montreal"
+)
 
 // new CronJob(
 //     "*/20 * * * * *",

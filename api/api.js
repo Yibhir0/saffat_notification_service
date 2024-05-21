@@ -17,13 +17,12 @@ const deleteToken = async (req, res) => {
 }
 
 
-
 //Adds a token
 const addToken = async (req, res) => {
-    const token = req.body;  	
-    let tok = await Token.findOne({ token:token.token });
-    if (tok) return res.status(400).json({message:'Token already exists.'});
-    
+    const token = req.body;
+    let tok = await Token.findOne({ token: token.token });
+    if (tok) return res.status(400).json({ message: 'Token already exists.' });
+
     const saving_token = new Token(token);
     try {
         const newToken = await saving_token.save();
@@ -46,6 +45,7 @@ const getTokens = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 
 // Get all tokens
