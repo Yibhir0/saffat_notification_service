@@ -2,9 +2,13 @@ const express = require("express");
 
 const bodyParser = require("body-parser");
 
+const cors = require('cors');
+
+
 const { connectDB } = require("./dbConnection");
 
 const { CronJob } = require("cron");
+
 
 const TokenRouter = require("./route/token.route");
 
@@ -14,10 +18,12 @@ const { getAllTokens } = require("./api/api");
 
 const app = express();
 
-app.use(express.json());
+//app.use(express.json());
 
 // Parsing the body to json
 app.use(bodyParser.json());
+
+app.use(cors()); 
 // app.use(
 //   bodyParser.urlencoded({
 //     extended: true,
