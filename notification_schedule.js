@@ -49,9 +49,10 @@ async function schedule_notifications() {
  * @param {*} cron_wudu 
  */
 async function start_notification_scheduling(tokens, prayers, body_messages, cron_wudu) {
+
     for (let i = 0; i < cron_wudu.length; i++) {
         new CronJob(
-            cron_wudu[i],
+            cron_wudu[i],//"*/10 * * * * *"
             async function () {
                 notify_muslims(body_messages[i], prayers[i], tokens);
             },
@@ -60,7 +61,6 @@ async function start_notification_scheduling(tokens, prayers, body_messages, cro
             "America/Montreal"
         )
     }
-
 }
 
 /**
@@ -94,8 +94,6 @@ function convert_time_to_cron(time_strs) {
  */
 
 function construct_notification_bodies(prayers) {
-
-
     const bodies = prayers.map(p => {
         let message = "Wudu time.  " + p.name + " prayer is in 10 minutes";
         return message;
@@ -126,9 +124,5 @@ async function fetch_prayer() {
     }
     return data;
 }
-
-
-
-
 
 module.exports = { schedule_notifications }; 

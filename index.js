@@ -38,7 +38,7 @@ const PORT = process.env.PORT || 5001;
 const expo = new Expo();
 
 new CronJob(
-    "* * * * *",
+    "* * * * *",//" 0 0 * * *"
 
     async function () {
         schedule_notifications();
