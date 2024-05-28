@@ -23,7 +23,7 @@
 # Step 3: Setting up Nginx Proxy
 - sudo apt install nginx
 - sudo vim  /etc/nginx/sites-available/default
-- paste this:
+- paste this:<br> 
 location / {
         proxy_pass http://localhost:5000;
         proxy_http_version 1.1;
